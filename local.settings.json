@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "SMTP_HOST": "smtp.gmail.com",
+    "SMTP_PORT": "587",
+    "SMTP_EMAIL": "tester7760775061@gmail.com",
+    "SMTP_PASSWORD": "mamb mymj uuus gcbh"
+  }
+}

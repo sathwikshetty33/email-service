@@ -1,0 +1,24 @@
+{
+  "budgetName": "fastapi-minimal-budget",
+  "budgetAmount": 5,
+  "currency": "USD",
+  "timeGrain": "Monthly",
+  "timePeriod": {
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31"
+  },
+  "notifications": {
+    "Actual_GreaterThan_80_Percent": {
+      "enabled": true,
+      "operator": "GreaterThan",
+      "threshold": 80,
+      "contactEmails": ["your-email@example.com"]
+    },
+    "Forecasted_GreaterThan_100_Percent": {
+      "enabled": true,
+      "operator": "GreaterThan",
+      "threshold": 100,
+      "contactEmails": ["your-email@example.com"]
+    }
+  }
+}

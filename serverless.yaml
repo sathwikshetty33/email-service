@@ -1,0 +1,59 @@
+service: fastapi-azure-app
+
+provider:
+  name: azure
+  region: East US
+  runtime: python3.8
+  # Set environment variables here if needed
+  environment:
+    AZURE_FUNCTIONS_ENVIRONMENT: production
+
+plugins:
+  - serverless-azure-functions
+
+functions:
+  api:
+    handler: main.main
+    events:
+      - http: true
+        x-azure-settings:
+          methods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+            - OPTIONS
+          authLevel: anonymous
+          route: "api/{*segments}"  # This will handle all routes under /api/
+
+package:
+  individually: false
+  exclude:
+    - node_modules/**
+    - .venv/**
+    - __pycache__/**
+    - .pytest_cache/**
+    - .git/**
+    - .env
+    - .gitignore
+    - README.md
+    - .vscode/**
+    - "*.pyc"
+    - "*.pyo"
+    - "*.pyd"
+    - tests/**
+    - docs/**
+    - "*.log"
+  include:
+    - main.py
+    - requirements.txt
+    - "**/*.py"
+
+custom:
+  azure:
+    resourceGroup: ${self:service}-rg-${self:custom.stage}
+    storageAccount: ${self:service}${self:custom.stage}storage
+    location: "East US"
+    subscriptionId: ${env:AZURE_SUBSCRIPTION_ID}
+  stage: ${opt:stage, 'dev'}
